@@ -1,0 +1,97 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f5f5f5" rx="10" ry="10"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle">Two Models of Consciousness</text>
+  
+  <!-- Divider -->
+  <line x1="400" y1="70" x2="400" y2="570" stroke="#d9d9d9" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <!-- Traditional Model -->
+  <text x="200" y="80" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle">Traditional Model</text>
+  <text x="200" y="110" font-family="Arial" font-size="16" text-anchor="middle" font-style="italic">"The Expanding Flashlight"</text>
+  <text x="200" y="140" font-family="Arial" font-size="14" text-anchor="middle">Consciousness as gaining access to more information</text>
+  
+  <!-- Nnamdi's Model -->
+  <text x="600" y="80" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle">Nnamdi's Model</text>
+  <text x="600" y="110" font-family="Arial" font-size="16" text-anchor="middle" font-style="italic">"The Protective Barrier"</text>
+  <text x="600" y="140" font-family="Arial" font-size="14" text-anchor="middle">Consciousness as filtering infinite information</text>
+  
+  <!-- Traditional Model Visualization - Expanding Flashlight -->
+  <!-- Baby stage -->
+  <circle cx="200" cy="200" r="60" fill="#fff" stroke="#000" stroke-width="1"/>
+  <circle cx="200" cy="200" r="15" fill="#FFEB3B"/>
+  <text x="200" y="260" font-family="Arial" font-size="14" text-anchor="middle">Baby</text>
+  <text x="200" y="280" font-family="Arial" font-size="12" text-anchor="middle">Small flashlight</text>
+  <text x="200" y="300" font-family="Arial" font-size="12" text-anchor="middle">Limited access to information</text>
+  
+  <!-- Child stage -->
+  <circle cx="200" cy="380" r="60" fill="#fff" stroke="#000" stroke-width="1"/>
+  <circle cx="200" cy="380" r="30" fill="#FFEB3B"/>
+  <text x="200" y="440" font-family="Arial" font-size="14" text-anchor="middle">Child</text>
+  <text x="200" y="460" font-family="Arial" font-size="12" text-anchor="middle">Medium flashlight</text>
+  <text x="200" y="480" font-family="Arial" font-size="12" text-anchor="middle">More information accessible</text>
+  
+  <!-- Adult stage -->
+  <circle cx="200" cy="560" r="60" fill="#fff" stroke="#000" stroke-width="1"/>
+  <circle cx="200" cy="560" r="45" fill="#FFEB3B"/>
+  <text x="200" y="550" font-family="Arial" font-size="14" text-anchor="middle">Adult</text>
+  <text x="270" y="560" font-family="Arial" font-size="12" text-anchor="middle">Large flashlight</text>
+  <text x="270" y="580" font-family="Arial" font-size="12" text-anchor="middle">Maximum access to information</text>
+  
+  <!-- Growth arrows -->
+  <path d="M 200 230 L 200 350" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M 200 410 L 200 530" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Nnamdi's Model Visualization - Protective Barrier -->
+  <!-- Baby stage -->
+  <circle cx="600" cy="200" r="60" fill="#fff" stroke="#000" stroke-width="1"/>
+  <circle cx="600" cy="200" r="58" fill="#f5222d" opacity="0.2" stroke="#f5222d" stroke-width="1" stroke-dasharray="2,2"/>
+  <path d="M 550 180 L 650 180 M 550 190 L 650 190 M 550 200 L 650 200 M 550 210 L 650 210 M 550 220 L 650 220" stroke="#1890ff" stroke-width="1" opacity="0.8"/>
+  <text x="600" y="260" font-family="Arial" font-size="14" text-anchor="middle">Baby</text>
+  <text x="600" y="280" font-family="Arial" font-size="12" text-anchor="middle">Weak/minimal barrier</text>
+  <text x="600" y="300" font-family="Arial" font-size="12" text-anchor="middle">Overwhelmed by all information</text>
+  
+  <!-- Child stage -->
+  <circle cx="600" cy="380" r="60" fill="#fff" stroke="#000" stroke-width="1"/>
+  <circle cx="600" cy="380" r="58" fill="#f5222d" opacity="0.4" stroke="#f5222d" stroke-width="2" stroke-dasharray="2,2"/>
+  <path d="M 580 340 L 620 340 M 580 360 L 620 360 M 580 380 L 620 380 M 580 400 L 620 400 M 580 420 L 620 420" stroke="#1890ff" stroke-width="1.5" opacity="0.8"/>
+  <text x="600" y="440" font-family="Arial" font-size="14" text-anchor="middle">Child</text>
+  <text x="600" y="460" font-family="Arial" font-size="12" text-anchor="middle">Developing barrier</text>
+  <text x="600" y="480" font-family="Arial" font-size="12" text-anchor="middle">Better filtering of information</text>
+  
+  <!-- Adult stage -->
+  <circle cx="600" cy="560" r="60" fill="#fff" stroke="#000" stroke-width="1"/>
+  <circle cx="600" cy="560" r="58" fill="#f5222d" opacity="0.7" stroke="#f5222d" stroke-width="3"/>
+  <path d="M 590 520 L 610 520 M 590 540 L 610 540 M 590 560 L 610 560 M 590 580 L 610 580 M 590 600 L 610 600" stroke="#1890ff" stroke-width="2" opacity="0.8"/>
+  <text x="600" y="550" font-family="Arial" font-size="14" text-anchor="middle">Adult</text>
+  <text x="530" y="560" font-family="Arial" font-size="12" text-anchor="end">Strong barrier</text>
+  <text x="530" y="580" font-family="Arial" font-size="12" text-anchor="end">Optimal filtering of information</text>
+  
+  <!-- Growth arrows -->
+  <path d="M 600 230 L 600 350" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M 600 410 L 600 530" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Arrowhead marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+  
+  <!-- Key Differences -->
+  <rect x="300" y="170" width="200" height="120" fill="#e6f7ff" stroke="#1890ff" stroke-width="2" rx="10" ry="10"/>
+  <text x="400" y="190" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">Traditional View</text>
+  <text x="400" y="220" font-family="Arial" font-size="12" text-anchor="middle">• Starts with limited information</text>
+  <text x="400" y="240" font-family="Arial" font-size="12" text-anchor="middle">• Gradually gains more access</text>
+  <text x="400" y="260" font-family="Arial" font-size="12" text-anchor="middle">• Development = seeing more</text>
+  <text x="400" y="280" font-family="Arial" font-size="12" text-anchor="middle">• Like a growing flashlight</text>
+  
+  <rect x="300" y="350" width="200" height="120" fill="#fff2e8" stroke="#fa8c16" stroke-width="2" rx="10" ry="10"/>
+  <text x="400" y="370" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">Nnamdi's View</text>
+  <text x="400" y="400" font-family="Arial" font-size="12" text-anchor="middle">• Starts with all information</text>
+  <text x="400" y="420" font-family="Arial" font-size="12" text-anchor="middle">• Gradually develops filters</text>
+  <text x="400" y="440" font-family="Arial" font-size="12" text-anchor="middle">• Development = focusing better</text>
+  <text x="400" y="460" font-family="Arial" font-size="12" text-anchor="middle">• Like noise-canceling headphones</text>
+</svg>

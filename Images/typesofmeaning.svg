@@ -1,0 +1,52 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- Title -->
+  <text x="400" y="50" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle">Four Types of Meaningful Thoughts</text>
+  
+  <!-- First Thought: Emptiness -->
+  <rect x="50" y="100" width="320" height="200" fill="#e6f7ff" stroke="#1890ff" stroke-width="2" rx="10" ry="10"/>
+  <text x="210" y="130" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle">First Thought: Emptiness</text>
+  <text x="210" y="160" font-family="Arial" font-size="14" text-anchor="middle">Non-reflective action</text>
+  <circle cx="210" cy="200" r="30" fill="#1890ff" opacity="0.3"/>
+  <text x="210" y="205" font-family="Arial" font-size="14" text-anchor="middle">Blank</text>
+  <text x="210" y="250" font-family="Arial" font-size="12" text-anchor="middle" width="280">Pure action without inner monologue</text>
+  <text x="210" y="270" font-family="Arial" font-size="12" text-anchor="middle">Example: catching a ball, breathing</text>
+  
+  <!-- Second Thought: Good Experience Wave -->
+  <rect x="430" y="100" width="320" height="200" fill="#f6ffed" stroke="#52c41a" stroke-width="2" rx="10" ry="10"/>
+  <text x="590" y="130" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle">Second Thought: Good Experience Wave</text>
+  <text x="590" y="160" font-family="Arial" font-size="14" text-anchor="middle">Experience-laced cognition</text>
+  <path d="M 480 200 Q 520 170, 560 200 Q 600 230, 640 200 Q 680 170, 700 200" stroke="#52c41a" stroke-width="4" fill="none"/>
+  <text x="590" y="250" font-family="Arial" font-size="12" text-anchor="middle">Layered with sensations, memories, context</text>
+  <text x="590" y="270" font-family="Arial" font-size="12" text-anchor="middle">Example: "I want to buy milk" with sensory details</text>
+  
+  <!-- Third Thought: Audio Monologue -->
+  <rect x="50" y="350" width="320" height="200" fill="#fff2e8" stroke="#fa8c16" stroke-width="2" rx="10" ry="10"/>
+  <text x="210" y="380" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle">Third Thought: Audio Monologue</text>
+  <text x="210" y="410" font-family="Arial" font-size="14" text-anchor="middle">Inner voice/dialogue</text>
+  <path d="M 150 450 Q 180 430, 210 450 Q 240 470, 270 450" stroke="#fa8c16" stroke-width="4" fill="none"/>
+  <path d="M 150 460 Q 180 480, 210 460 Q 240 440, 270 460" stroke="#fa8c16" stroke-width="2" fill="none"/>
+  <text x="210" y="500" font-family="Arial" font-size="12" text-anchor="middle">Verbal thoughts, logic, language</text>
+  <text x="210" y="520" font-family="Arial" font-size="12" text-anchor="middle">Example: "Should I go to this shop or that one?"</text>
+  
+  <!-- Fourth Thought: Visual Monologue -->
+  <rect x="430" y="350" width="320" height="200" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" rx="10" ry="10"/>
+  <text x="590" y="380" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle">Fourth Thought: Visual Monologue</text>
+  <text x="590" y="410" font-family="Arial" font-size="14" text-anchor="middle">Visual simulation</text>
+  <rect x="550" y="435" width="80" height="50" fill="#722ed1" opacity="0.3" rx="5" ry="5"/>
+  <rect x="560" y="445" width="20" height="30" fill="#722ed1" opacity="0.5"/>
+  <rect x="600" y="455" width="20" height="20" fill="#722ed1" opacity="0.5"/>
+  <text x="590" y="500" font-family="Arial" font-size="12" text-anchor="middle">Thinking in images and simulations</text>
+  <text x="590" y="520" font-family="Arial" font-size="12" text-anchor="middle">Example: Seeing the store layout in your mind</text>
+
+  <!-- Connecting lines -->
+  <path d="M 210 300 L 210 350" stroke="#666" stroke-width="1" stroke-dasharray="5,5"/>
+  <path d="M 590 300 L 590 350" stroke="#666" stroke-width="1" stroke-dasharray="5,5"/>
+  <path d="M 370 200 L 430 200" stroke="#666" stroke-width="1" stroke-dasharray="5,5"/>
+  <path d="M 370 450 L 430 450" stroke="#666" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- Legend -->
+  <text x="400" y="570" font-family="Arial" font-size="14" font-style="italic" text-anchor="middle">These four types represent the range of cognitive experiences</text>
+</svg>
