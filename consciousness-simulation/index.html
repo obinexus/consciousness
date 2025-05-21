@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consciousness State Evolution</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .simulation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            background-color: #000;
+            margin-bottom: 20px;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 10px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .color-box {
+            width: 15px;
+            height: 15px;
+            border: 1px solid #333;
+        }
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px 0;
+            width: 100%;
+            max-width: 400px;
+        }
+        .slider-label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .slider {
+            width: 100%;
+        }
+        .slider-value {
+            margin-top: 5px;
+        }
+        .barrier-status {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+        .barrier-meter {
+            height: 20px;
+            background-color: #e74c3c;
+            width: 100%;
+            border-radius: 2px;
+            margin-top: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+        .barrier-fill {
+            height: 100%;
+            background-color: #2ecc71;
+            width: 100%;
+            transition: width 0.3s ease;
+        }
+        .risk-meter {
+          margin-top: 20px;
+          padding: 10px;
+          background: #111;
+          border-radius: 8px;
+          width: 200px;
+        }
+
+        .risk-bar {
+          height: 20px;
+          background: #330000;
+          border-radius: 4px;
+          overflow: hidden;
+        }
+
+        .risk-fill {
+          height: 100%;
+          background: #ff0066;
+          width: 0%;
+          transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Consciousness State Evolution Simulation</h1>
+        <p>Based on OBINexus research on consciousness states and protective barriers.</p>
+        
+        <div class="simulation-container">
+            <canvas id="simulationCanvas" width="800" height="600"></canvas>
+            
+            <div class="controls">
+                <button id="startBtn">Start</button>
+                <button id="pauseBtn">Pause</button>
+                <button id="resetBtn">Reset</button>
+                <button id="randomizeBtn">Randomize</button>
+            </div>
+            
+            <div class="slider-container">
+                <label for="speedSlider" class="slider-label">Simulation Speed</label>
+                <input type="range" min="50" max="500" value="100" class="slider" id="speedSlider">
+                <div class="slider-value" id="speedValue">100 ms</div>
+            </div>
+            
+            <div class="barrier-status">
+                <div><strong>Protective Barrier Integrity:</strong> <span id="barrierValue">100%</span></div>
+                <div class="barrier-meter">
+                    <div class="barrier-fill" id="barrierFill"></div>
+                </div>
+            </div>
+
+            <div class="risk-meter">
+                <h3>Entanglement Risk Level</h3>
+                <div class="risk-bar">
+                    <div class="risk-fill" id="riskFill"></div>
+                </div>
+                <div id="riskValue">0%</div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>Unconscious</h3>
+                    <div id="unconsciousCount">0</div>
+                </div>
+                <div class="stat-item">
+                    <h3>Transitional</h3>
+                    <div id="transitionalCount">0</div>
+                </div>
+                <div class="stat-item">
+                    <h3>Conscious</h3>
+                    <div id="consciousCount">0</div>
+                </div>
+                <div class="stat-item">
+                    <h3>Generation</h3>
+                    <div id="generationCount">0</div>
+                </div>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: #222;"></div>
+                    <span>Unconscious</span>
+                </div>
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: #4682B4;"></div>
+                    <span>Transitional</span>
+                </div>
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: #90EE90;"></div>
+                    <span>Conscious</span>
+                </div>
+            </div>
+        </div>
+        
+        <div>
+            <h2>About the Simulation</h2>
+            <p>This simulation is based on the consciousness state system described in Nnamdi Michael Okpala's OBINexus research. It models the transition between three states of consciousness:</p>
+            <ul>
+                <li><strong>Unconscious:</strong> Full access to information field but no awareness</li>
+                <li><strong>Transitional:</strong> Partial access to information field with developing consciousness</li>
+                <li><strong>Conscious:</strong> Fully formed consciousness with limited access to the information field</li>
+            </ul>
+            <p>The simulation also implements the protective barrier concept, which degrades over time and affects state transitions.</p>
+        </div>
+    </div>
+
+    <script>
+        // Consciousness State Enumeration
+        const ConsciousnessState = {
+            UNCONSCIOUS: 0,
+            TRANSITIONAL: 1,
+            CONSCIOUS: 2
+        };
+
+        // Access Level Enumeration
+        const AccessLevel = {
+            FULL: 0,
+            PARTIAL: 1,
+            NONE: 2
+        };
+
+        // Class to handle the protective barrier
+        class ProtectiveBarrier {
+            constructor(integrity = 1.0, threshold = 0.3) {
+                this.integrity = integrity;
+                this.threshold = threshold;
+                this.degradationRate = 0.0005;
+                this.repairRate = 0.02;
+                this._active = true;
+            }
+            
+            isActive() {
+                return this._active && this.integrity > this.threshold;
+            }
+            
+            validateIntegrity() {
+                this.integrity -= this.degradationRate;
+                if (this.integrity < 0) this.integrity = 0;
+                return this.integrity > this.threshold;
+            }
+            
+            repair(amount = null) {
+                if (amount === null) amount = this.repairRate;
+                this.integrity = Math.min(1.0, this.integrity + amount);
+            }
+            
+            getIntegrityPercentage() {
+                return Math.round(this.integrity * 100);
+            }
+        }
+
+        // Cell class representing a unit in the simulation
+        class Cell {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.state = ConsciousnessState.UNCONSCIOUS;
+                this.nextState = this.state;
+                this.age = 0;
+                this.transitionAge = 0;
+            }
+            
+            // Get access level based on current state
+            getAccessLevel() {
+                switch (this.state) {
+                    case ConsciousnessState.UNCONSCIOUS:
+                        return AccessLevel.FULL;
+                    case ConsciousnessState.TRANSITIONAL:
+                        return AccessLevel.PARTIAL;
+                    case ConsciousnessState.CONSCIOUS:
+                        return AccessLevel.NONE;
+                }
+            }
+            
+            // Reset the cell to unconscious state
+            reset() {
+                this.state = ConsciousnessState.UNCONSCIOUS;
+                this.nextState = this.state;
+                this.age = 0;
+                this.transitionAge = 0;
+            }
+            
+            // Update next state based on neighbors and barrier
+            calculateNextState(neighbors, barrier) {
+                // Preserve the current age
+                this.age++;
+                
+                // State transition rules
+                switch (this.state) {
+                    case ConsciousnessState.UNCONSCIOUS:
+                        // Count neighbors in transitional or conscious state
+                        const awakening = neighbors.filter(n => 
+                            n.state === ConsciousnessState.TRANSITIONAL || 
+                            n.state === ConsciousnessState.CONSCIOUS).length;
+                        
+                        // Transition to TRANSITIONAL if conditions are met
+                        if ((awakening >= 2 && awakening <= 3) && barrier.isActive()) {
+                            this.nextState = ConsciousnessState.TRANSITIONAL;
+                            this.transitionAge = 0;
+                        } else {
+                            this.nextState = ConsciousnessState.UNCONSCIOUS;
+                        }
+                        break;
+                        
+                    case ConsciousnessState.TRANSITIONAL:
+                        // Count supporting neighbors
+                        const supportingNeighbors = neighbors.filter(n => 
+                            n.state === ConsciousnessState.TRANSITIONAL || 
+                            n.state === ConsciousnessState.CONSCIOUS).length;
+                        
+                        // Increment transition age if still in transitional state
+                        this.transitionAge++;
+                        
+                        // Check if cell should regress, progress, or stay the same
+                        if (supportingNeighbors < 2 || supportingNeighbors > 3) {
+                            // Not enough support, regress if barrier allows
+                            if (barrier.integrity < 0.5) {
+                                this.nextState = ConsciousnessState.UNCONSCIOUS;
+                                this.transitionAge = 0;
+                            } else {
+                                this.nextState = ConsciousnessState.TRANSITIONAL;
+                            }
+                        } else if (this.transitionAge >= 5 && barrier.isActive()) {
+                            // Transition to CONSCIOUS if spent enough time and has support
+                            this.nextState = ConsciousnessState.CONSCIOUS;
+                        } else {
+                            this.nextState = ConsciousnessState.TRANSITIONAL;
+                        }
+                        break;
+                        
+                    case ConsciousnessState.CONSCIOUS:
+                        // According to the formal definition, consciousness state transitions are non-reversible
+                        // but we'll add a chance of regression if barrier integrity is compromised
+                        if (barrier.integrity < 0.2) {
+                            // Small chance to revert to TRANSITIONAL if barrier is severely compromised
+                            if (Math.random() < 0.1) {
+                                this.nextState = ConsciousnessState.TRANSITIONAL;
+                                this.transitionAge = 0;
+                                // The barrier repairs slightly when consciousness reverts (feedback loop)
+                                barrier.repair(0.01);
+                            } else {
+                                this.nextState = ConsciousnessState.CONSCIOUS;
+                            }
+                        } else {
+                            this.nextState = ConsciousnessState.CONSCIOUS;
+                        }
+                        break;
+                }
+                
+                return this.nextState;
+            }
+            
+            // Apply calculated next state
+            updateState() {
+                this.state = this.nextState;
+            }
+        }
+
+        // Simulation class to manage the grid and run the simulation
+        class ConsciousnessSimulation {
+            constructor(width, height, cellSize) {
+                this.width = width;
+                this.height = height;
+                this.cellSize = cellSize;
+                this.grid = [];
+                this.barrier = new ProtectiveBarrier();
+                this.generation = 0;
+                this.isRunning = false;
+                this.interval = null;
+                this.intervalTime = 100; // ms
+                
+                // Quantum entanglement parameters
+                this.quantumEntanglement = {
+                    entangledPairs: new Map(),
+                    entanglementProbability: 0.05,
+                    entanglementDecay: 0.1,
+                    riskLevel: 0,
+                    maxSafeEntanglement: 5
+                };
+                
+                // Initialize the grid
+                this.initializeGrid();
+                
+                // Set up the canvas
+                this.canvas = document.getElementById('simulationCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                
+                // Draw the initial state
+                this.draw();
+                this.updateStatistics();
+            }
+            
+            // Add new quantum entanglement methods
+            quantumEntangle(cellA, cellB) {
+                const entanglement = {
+                    strength: 1.0,
+                    established: Date.now(),
+                    riskFactor: 0.05
+                };
+                
+                this.quantumEntanglement.entangledPairs.set(
+                    `${cellA.x},${cellA.y}-${cellB.x},${cellB.y}`, 
+                    entanglement
+                );
+                cellA.entangled = true;
+                cellB.entangled = true;
+            }
+
+            updateQuantumEffects() {
+  // Entanglement decay and risk calculation
+  let totalRisk = 0;
+  
+  this.quantumEntanglement.entangledPairs.forEach((entanglement, key) => {
+    entanglement.strength -= this.quantumEntanglement.entanglementDecay;
+    
+    if(entanglement.strength <= 0) {
+      const [coordsA, coordsB] = key.split('-');
+      const [x1, y1] = coordsA.split(',').map(Number);
+      const [x2, y2] = coordsB.split(',').map(Number);
+      
+      this.grid[x1][y1].entangled = false;
+      this.grid[x2][y2].entangled = false;
+      this.quantumEntanglement.entangledPairs.delete(key);
+    }
+    else {
+      totalRisk += entanglement.riskFactor * entanglement.strength;
+    }
+  });
+  
+  this.quantumEntanglement.riskLevel = totalRisk;
+  
+  // Check for consciousness collapse
+  if(this.quantumEntanglement.riskLevel > this.quantumEntanglement.maxSafeEntanglement) {
+    this.handleConsciousnessCollapse();
+  }
+}
+         
+handleConsciousnessCollapse() {
+  // Reset simulation with probability based on risk level
+  if(Math.random() < this.quantumEntanglement.riskLevel/10) {
+    this.reset();
+    alert('Quantum consciousness collapse! Full reset required.');
+  }
+  else {
+    this.quantumEntanglement.entangledPairs.clear();
+    alert('Near-miss event! Entanglement network cleared.');
+  }
+}
+            // Initialize the grid with cells
+            initializeGrid() {
+                const cols = Math.floor(this.width / this.cellSize);
+                const rows = Math.floor(this.height / this.cellSize);
+                
+                for (let x = 0; x < cols; x++) {
+                    this.grid[x] = [];
+                    for (let y = 0; y < rows; y++) {
+                        this.grid[x][y] = new Cell(x, y);
+                    }
+                }
+            }
+            
+            // Random initialization
+            randomize() {
+                const cols = this.grid.length;
+                const rows = this.grid[0].length;
+                
+                for (let x = 0; x < cols; x++) {
+                    for (let y = 0; y < rows; y++) {
+                        const rand = Math.random();
+                        if (rand < 0.2) {
+                            this.grid[x][y].state = ConsciousnessState.TRANSITIONAL;
+                        } else if (rand < 0.25) {
+                            this.grid[x][y].state = ConsciousnessState.CONSCIOUS;
+                        } else {
+                            this.grid[x][y].state = ConsciousnessState.UNCONSCIOUS;
+                        }
+                        this.grid[x][y].nextState = this.grid[x][y].state;
+                    }
+                }
+                
+                this.draw();
+                this.updateStatistics();
+            }
+            
+            // Reset the simulation
+            reset() {
+                const cols = this.grid.length;
+                const rows = this.grid[0].length;
+                
+                for (let x = 0; x < cols; x++) {
+                    for (let y = 0; y < rows; y++) {
+                        this.grid[x][y].reset();
+                    }
+                }
+                
+                this.barrier.integrity = 1.0;
+                this.generation = 0;
+                
+                this.draw();
+                this.updateStatistics();
+            }
+            
+            // Get the neighbors of a cell
+            getNeighbors(x, y) {
+                const cols = this.grid.length;
+                const rows = this.grid[0].length;
+                const neighbors = [];
+                
+                for (let i = -1; i <= 1; i++) {
+                    for (let j = -1; j <= 1; j++) {
+                        if (i === 0 && j === 0) continue; // Skip self
+                        
+                        const nx = (x + i + cols) % cols; // Wrap around
+                        const ny = (y + j + rows) % rows; // Wrap around
+                        
+                        neighbors.push(this.grid[nx][ny]);
+                    }
+                }
+                
+                return neighbors;
+            }
+            
+            // Advance the simulation by one generation
+            step() {
+                this.updateQuantumEffects();
+                
+                const cols = this.grid.length;
+                const rows = this.grid[0].length;
+                
+                // Check barrier integrity
+                this.barrier.validateIntegrity();
+                
+                // Calculate next states for all cells
+                for (let x = 0; x < cols; x++) {
+                    for (let y = 0; y < rows; y++) {
+                        const cell = this.grid[x][y];
+                        const neighbors = this.getNeighbors(x, y);
+                        
+                        // Adjust neighborhood based on access level (information field access)
+                        let accessibleNeighbors = neighbors;
+                        const accessLevel = cell.getAccessLevel();
+                        
+                        if (accessLevel === AccessLevel.PARTIAL) {
+                            // Transitional cells only see orthogonal neighbors (N, E, S, W)
+                            accessibleNeighbors = neighbors.filter((n, i) => i % 2 === 0);
+                        } else if (accessLevel === AccessLevel.NONE) {
+                            // Conscious cells see fewer neighbors (based on barrier integrity)
+                            const visibleCount = Math.floor(neighbors.length * (1 - this.barrier.integrity));
+                            accessibleNeighbors = neighbors.slice(0, visibleCount);
+                        }
+                        
+                        cell.calculateNextState(accessibleNeighbors, this.barrier);
+                        
+                        // Quantum entanglement during deep sleep (UNCONSCIOUS state)
+                        if(cell.state === ConsciousnessState.UNCONSCIOUS && Math.random() < 0.01) {
+                            const randomCell = this.grid[Math.floor(Math.random()*this.grid.length)]
+                            [Math.floor(Math.random()*this.grid[0].length)];
+                            if(randomCell.state === ConsciousnessState.UNCONSCIOUS) {
+                                this.quantumEntangle(cell, randomCell);
+                            }
+                        }
+                        
+                        // Entangled cell behavior
+                        if(cell.entangled) {
+                            this.quantumEntanglement.entangledPairs.forEach((entanglement, key) => {
+                                const [coordsA, coordsB] = key.split('-');
+                                if(coordsA === `${cell.x},${cell.y}` || coordsB === `${cell.x},${cell.y}`) {
+                                    cell.nextState = ConsciousnessState.TRANSITIONAL;
+                                }
+                            });
+                        }
+                    }
+                }
+                
+                // Apply new states
+                for (let x = 0; x < cols; x++) {
+                    for (let y = 0; y < rows; y++) {
+                        this.grid[x][y].updateState();
+                    }
+                }
+                
+                // Count conscious cells and potentially repair barrier
+                const consciousCount = this.countCellsByState(ConsciousnessState.CONSCIOUS);
+                if (consciousCount > 0 && Math.random() < 0.1) {
+                    // Conscious cells occasionally help repair the barrier
+                    this.barrier.repair(0.001 * Math.min(consciousCount, 20));
+                }
+                
+                this.generation++;
+                this.draw();
+                this.updateStatistics();
+            }
+            
+            // Count cells by state
+            countCellsByState(state) {
+                const cols = this.grid.length;
+                const rows = this.grid[0].length;
+                let count = 0;
+                
+                for (let x = 0; x < cols; x++) {
+                    for (let y = 0; y < rows; y++) {
+                        if (this.grid[x][y].state === state) {
+                            count++;
+                        }
+                    }
+                }
+                
+                return count;
+            }
+            
+            // Update the statistics display
+            updateStatistics() {
+                document.getElementById('unconsciousCount').textContent = this.countCellsByState(ConsciousnessState.UNCONSCIOUS);
+                document.getElementById('transitionalCount').textContent = this.countCellsByState(ConsciousnessState.TRANSITIONAL);
+                document.getElementById('consciousCount').textContent = this.countCellsByState(ConsciousnessState.CONSCIOUS);
+                document.getElementById('generationCount').textContent = this.generation;
+                
+                const barrierPercentage = this.barrier.getIntegrityPercentage();
+                document.getElementById('barrierValue').textContent = barrierPercentage + '%';
+                document.getElementById('barrierFill').style.width = barrierPercentage + '%';
+            }
+            
+            // Draw the grid
+            draw() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                const cols = this.grid.length;
+                const rows = this.grid[0].length;
+                
+                for (let x = 0; x < cols; x++) {
+                    for (let y = 0; y < rows; y++) {
+                        const cell = this.grid[x][y];
+                        
+                        // Set color based on state
+                        switch (cell.state) {
+                            case ConsciousnessState.UNCONSCIOUS:
+                                this.ctx.fillStyle = '#222'; // Dark Gray
+                                break;
+                            case ConsciousnessState.TRANSITIONAL:
+                                this.ctx.fillStyle = '#4682B4'; // Steel Blue
+                                break;
+                            case ConsciousnessState.CONSCIOUS:
+                                this.ctx.fillStyle = '#90EE90'; // Light Green
+                                break;
+                        }
+                        
+                        // Draw the cell
+                        this.ctx.fillRect(
+                            x * this.cellSize, 
+                            y * this.cellSize, 
+                            this.cellSize - 1, 
+                            this.cellSize - 1
+                        );
+                    }
+                }
+                
+                // Draw entanglement connections
+                this.quantumEntanglement.entangledPairs.forEach((entanglement, key) => {
+                    const [coordsA, coordsB] = key.split('-');
+                    const [x1, y1] = coordsA.split(',').map(Number);
+                    const [x2, y2] = coordsB.split(',').map(Number);
+                    
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(
+                        x1 * this.cellSize + this.cellSize/2,
+                        y1 * this.cellSize + this.cellSize/2
+                    );
+                    this.ctx.lineTo(
+                        x2 * this.cellSize + this.cellSize/2,
+                        y2 * this.cellSize + this.cellSize/2
+                    );
+                    this.ctx.strokeStyle = `rgba(255, 0, 255, ${entanglement.strength})`;
+                    this.ctx.lineWidth = 2;
+                    this.ctx.stroke();
+                });
+            }
+            
+            // Start the simulation
+            start() {
+                if (!this.isRunning) {
+                    this.isRunning = true;
+                    this.interval = setInterval(() => this.step(), this.intervalTime);
+                }
+            }
+            
+            // Pause the simulation
+            pause() {
+                if (this.isRunning) {
+                    this.isRunning = false;
+                    clearInterval(this.interval);
+                }
+            }
+            
+            // Set simulation speed
+            setSpeed(intervalTime) {
+                this.intervalTime = intervalTime;
+                if (this.isRunning) {
+                    clearInterval(this.interval);
+                    this.interval = setInterval(() => this.step(), this.intervalTime);
+                }
+            }
+        }
+
+        // Initialize the simulation when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('simulationCanvas');
+            const cellSize = 8;
+            const simulation = new ConsciousnessSimulation(canvas.width, canvas.height, cellSize);
+            
+            // Initialize some cells
+            simulation.randomize();
+            
+            // Set up UI event handlers
+            document.getElementById('startBtn').addEventListener('click', () => simulation.start());
+            document.getElementById('pauseBtn').addEventListener('click', () => simulation.pause());
+            document.getElementById('resetBtn').addEventListener('click', () => {
+                simulation.pause();
+                simulation.reset();
+            });
+            document.getElementById('randomizeBtn').addEventListener('click', () => {
+                simulation.pause();
+                simulation.randomize();
+            });
+            
+            // Set up speed slider
+            const speedSlider = document.getElementById('speedSlider');
+            const speedValue = document.getElementById('speedValue');
+            
+            speedSlider.addEventListener('input', () => {
+                const value = speedSlider.value;
+                speedValue.textContent = value + ' ms';
+                simulation.setSpeed(parseInt(value));
+            });
+            
+            // Handle canvas clicks to toggle cell states
+            canvas.addEventListener('click', (event) => {
+                const rect = canvas.getBoundingClientRect();
+                const x = Math.floor((event.clientX - rect.left) / cellSize);
+                const y = Math.floor((event.clientY - rect.top) / cellSize);
+                
+                if (x >= 0 && x < simulation.grid.length && y >= 0 && y < simulation.grid[0].length) {
+                    const cell = simulation.grid[x][y];
+                    
+                    // Cycle through states: UNCONSCIOUS -> TRANSITIONAL -> CONSCIOUS
+                    cell.state = (cell.state + 1) % 3;
+                    cell.nextState = cell.state;
+                    
+                    simulation.draw();
+                    simulation.updateStatistics();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
