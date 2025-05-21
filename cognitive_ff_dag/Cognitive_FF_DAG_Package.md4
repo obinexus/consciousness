@@ -1,0 +1,107 @@
+# Cognitive Filter-Flash DAG
+
+A Python implementation of a Bayesian Directed Acyclic Graph (DAG) for modeling cognitive processes according to the Filter-Flash theory of consciousness.
+
+## Overview
+
+This package provides a computational framework for simulating cognitive processes using a probabilistic approach. The framework supports both FilterFlash (bottom-up) and FlashFilter (top-down) modes of processing, corresponding to Nnamdi Okpala's theory that consciousness acts as a protective barrier filtering infinite information rather than as an expanding flashlight.
+
+## Components
+
+- `cognitive_system.py`: Core implementation of the Bayesian DAG model
+- `cognitive_visualizations.py`: Enhanced visualizations for the cognitive model
+- `examples/`: Example applications of the framework
+
+## Core Features
+
+### CognitiveDAG
+
+The main class implementing the cognitive model with:
+
+- FilterFlash processing (bottom-up)
+- FlashFilter processing (top-down)
+- Gamma wave detection for "aha" moments
+- Bayesian belief updates
+- Learning through feedback
+- Visualization capabilities
+
+### Node Types
+
+- `INPUT`: Raw sensory or data input nodes
+- `FEATURE`: Extracted feature from input
+- `CATEGORY`: Classification or categorization
+- `JUDGMENT`: Decision or judgment
+- `FEEDBACK`: Evaluation of output
+- `ABSTRACTION`: Higher-level abstractions
+- `HYPOTHESIS`: Top-down hypothesis
+
+### Instructions
+
+Each node carries an instruction type:
+- `CLASSIFY`: Classify input into categories
+- `DECOMPOSE`: Break down complex concepts
+- `WEIGH`: Evaluate importance/relevance
+- `ALIGN`: Align with existing knowledge
+- `ABSTRACT`: Generate higher-level concepts
+- `VERIFY`: Verify a hypothesis
+- `ADJUST`: Adjust weights or probabilities
+
+## Enhanced Visualizations
+
+The package includes advanced visualization capabilities:
+
+- Layered representations of cognitive networks
+- Entropy-based state encoding
+- Hamming-like binary representations of system states
+- Subjective state metrics
+- Separate visualizations for FilterFlash and FlashFilter modes
+
+## Usage Example
+
+```python
+from cognitive_system import build_color_classification_model
+from cognitive_visualizations import EnhancedCognitiveVisualizations
+
+# Create a color classification model
+model = build_color_classification_model()
+
+# Process red input in FilterFlash mode
+flashed_nodes = model.filter_to_flash(
+    {"high": 0.9, "low": 0.1}, ["r_input"]
+)
+
+# Create visualizations
+visualizer = EnhancedCognitiveVisualizations(model)
+visualizer.create_filter_flash_representation(filename="filter_flash.png")
+```
+
+## Running Examples
+
+The package includes a color classification example:
+
+```bash
+cd examples
+python color_classification_example.py
+```
+
+This will generate visualizations and output showing:
+1. FilterFlash processing
+2. FlashFilter verification
+3. Learning through feedback
+4. Entropy-based state encoding
+
+## Implementation Details
+
+The implementation uses:
+- NetworkX for graph representation
+- Matplotlib for visualization
+- NumPy for numerical operations
+- Standard Python libraries for type hints and logging
+
+## Further Development
+
+Potential areas for extension:
+- Integration with neural network models
+- More complex cognitive tasks
+- Real-time cognitive process simulation
+- Temporal dynamics and memory
